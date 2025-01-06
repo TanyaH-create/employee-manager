@@ -1,5 +1,6 @@
 import inquirer from "inquirer";
 import {pool} from './connection.js';
+import queries from '../db/queries.js';
 
 
 // create main menu function - anonymous, will run right away
@@ -57,6 +58,97 @@ async function mainMenu() {
 }
 
 //case statement functions
+//call query using the get statement set up in queries and
+//copy ingto response variable then output to the console
 async function viewAllDepartments() {
-   //call query 
+   const res = await pool.query(queries.getAllDepartments);
+   //write row array of results to console in table form
+   console.table(res.rows);
 }
+
+async function viewAllRoles() {
+    const res = await pool.query(queries.getAllRoles);
+    console.table(res.rows);
+}
+
+async function viewAllEmployees() {
+    const res = await pool.query(queries.getAllEmployees);
+    console.table(res.rows);
+}
+async function addDepartment() {
+    const {name} = await inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'Enter the name of the new department:',
+        },
+    ]);
+    //add data from prompt in the placeholder
+    await pool.query(queries.addDepartment,[name]);
+    console.log(`Added ${name} to departments.`)
+}
+
+async function addRole() {
+    const {title, salary, departmentId} = await inquirer.prompt([
+        {
+            type: 'input',
+            name: 'title',
+            message: 'Enter the new role title:'
+        },
+        {
+            type: 'input',
+            name: 'salary',
+            message: "Enter the new role's salary",
+        },
+        {
+            type: 'input',
+            name: 'departmentId',
+            message: "Enter the new role's department ID",
+        },    
+    ]);
+    await pool.query(queries.addRole, [title, salary, departmentId]);
+    console.log(`Added ${title} role`);
+}
+async function addEmployee() {
+    const { firstName, lastName, roleId, managerId } = await inquirer.prompt([
+        { 
+            type: 'input', 
+            name: 'firstName', 
+            message: "Enter the employee's first name:" 
+        },
+        { 
+            type: 'input', 
+            name: 'lastName', 
+            message: "Enter the employee's last name:" 
+        },
+        { 
+            type: 'input', 
+            name: 'roleId', 
+            message: "Enter the employee's role ID:" },
+        { 
+            type: 'input', 
+            name: 'managerId', 
+            message: "Enter the manager's ID (if any):" },
+      ]);
+      await pool.query(queries.addEmployee, [firstName, lastName, roleId, managerId || null]);
+      console.log(`Added ${firstName} ${lastName}.`);
+}
+async function updateEmployeeRole() {
+    const { employeeId, roleId } = await inquirer.prompt([
+      { 
+        type: 'input', 
+        name: 'employeeId',
+         message: "Enter the employee's ID:" 
+      },
+      { 
+        type: 'input', 
+        name: 'roleId', 
+        message: "Enter the new role ID:" 
+      },
+    ]);
+    await pool.query(queries.updateEmployeeRole, [roleId, employeeId]);
+    console.log('Updated employee role.');
+  }
+
+  //run main menu function
+  mainMenu();
