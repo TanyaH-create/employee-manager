@@ -1,6 +1,6 @@
 import inquirer from "inquirer";
 import {pool} from './connection.js';
-import queries from '../db/queries.js';
+import queries from './queries.js';
 
 
 // create main menu function - anonymous, will run right away
@@ -146,7 +146,7 @@ async function updateEmployeeRole() {
         message: "Enter the new role ID:" 
       },
     ]);
-    await pool.query(queries.updateEmployeeRole, [roleId, employeeId]);
+    await pool.query(queries.updateEmployee, [roleId, employeeId]);
     console.log('Updated employee role.');
   }
 
