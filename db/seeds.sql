@@ -1,4 +1,4 @@
--- seed data for department
+8-- seed data for department
 INSERT INTO department (name)  
 VALUES ('Engineering'),
        ('Finance'),
