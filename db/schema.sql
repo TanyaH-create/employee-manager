@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS employee_manager_db;
-CREATE DATABASE employee_manager_db;
+DROP DATABASE IF EXISTS employee_db;
+CREATE DATABASE employee_db;
 
-\c employee_manager_db;
+\c employee_db;
 
 -- Table: Department
 -- id will be automatically created by SERIAL
