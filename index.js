@@ -51,7 +51,7 @@ async function mainMenu() {
             console.log('Exiting Menu')
             //close the connection pool
             pool.end()
-            //process.exit();
+            process.exit();
     }
     //go back to main menu
     await mainMenu();
