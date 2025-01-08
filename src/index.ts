@@ -1,6 +1,6 @@
 import inquirer from "inquirer";
 import {pool} from './connection.js';
-import queries from './queries.js';
+import queries from './db/queries.js';
 
 
 // create main menu function - anonymous, will run right away
