@@ -18,9 +18,9 @@ VALUES ('Software Engineer',68000, 1),
 
        -- seed data for employee
  INSERT INTO employee (first_name, last_name, role_id, manager_id)
- VALUES ('Jane', 'Smith', 1, 4), 
-        ('Jame', 'Peach', 7, 3),
-        ('Linda', 'Jones', 5, NULL),
-        ('Bob', 'Builder', 6, NULL);
+ VALUES ('Jane', 'Smith', 5, NULL), 
+        ('James', 'Sullivan', 6, Null),
+        ('Linda', 'Jones', 1, 1),
+        ('Bob', 'Kramer', 2, NULL);
 
        

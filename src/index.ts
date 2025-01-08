@@ -5,7 +5,8 @@ import queries from './db/queries.js';
 
 // create main menu function - anonymous, will run right away
 async function mainMenu() {
-    //execute main menue
+    //display the  main menu in the terminal
+    // deconstruct action from prompt response (retrieve the user input)
     const {action} = await inquirer.prompt([
         {
             type: 'list',
@@ -24,7 +25,7 @@ async function mainMenu() {
         }
 
     ]);
-    // execute secondary menu based on action choice  
+    // execute queries from queries.js based on choice  
     switch (action) {
         case 'View All Departments':
             await viewAllDepartments();
@@ -57,9 +58,9 @@ async function mainMenu() {
     await mainMenu();
 }
 
-//case statement functions
-//call query using the get statement set up in queries and
-//copy ingto response variable then output to the console
+//
+//call query SQL using the key set up in queries object
+//copy into response variable then output to the console
 async function viewAllDepartments() {
    const res = await pool.query(queries.getAllDepartments);
    //write row array of results to console in table form
