@@ -21,6 +21,7 @@ async function mainMenu() {
                 'Add Role',
                 'Add Employee',
                 'Update Employee Role',
+                'Total Salary By Department',
                 'Exit',
             ]
         }
@@ -48,6 +49,9 @@ async function mainMenu() {
             break;
         case 'Update Employee Role':
             await updateEmployeeRole();
+            break;
+        case 'Total Salary By Department':
+            await getTotalDeptSalary();
             break;
         default:
             console.log('Exiting Menu')
@@ -151,6 +155,11 @@ async function updateEmployeeRole() {
     await pool.query(queries.updateEmployee, [roleId, employeeId]);
     console.log('Updated employee role.');
   }
+
+  async function getTotalDeptSalary() {
+    const res = await pool.query(queries.getTotalDeptSalary);
+    console.table(res.rows);
+}
 
   //run main menu function
   mainMenu();
