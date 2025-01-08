@@ -7,6 +7,7 @@ import queries from './db/queries.js';
 async function mainMenu() {
     //display the  main menu in the terminal
     // deconstruct action from prompt response (retrieve the user input)
+    
     const {action} = await inquirer.prompt([
         {
             type: 'list',

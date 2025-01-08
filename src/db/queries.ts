@@ -6,7 +6,7 @@ const queries = {
     
     //retrieve role data
     getAllRoles: `
-    SELECT role.title, role.id, department.name AS department, role.salary
+    SELECT role.id, role.title, department.name AS department, role.salary
     FROM role JOIN department ON role.department_id = department.id`,
 
     //retrieve employee data
