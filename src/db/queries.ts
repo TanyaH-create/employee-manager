@@ -30,8 +30,17 @@ const queries = {
     addEmployee: `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ($1, $2, $3, $4)`,
 
     //update the role of ann employee
-    updateEmployee: `UPDATE employee SET role_id = $1 WHERE id = $2;`
-
+    updateEmployee: `UPDATE employee SET role_id = $1 WHERE id = $2;`,
+    
+    //Join employee to role to department then group by department and get
+    //sum of salary in each department
+    getTotalDeptSalary: 
+    `SELECT department.name AS department_name, SUM(role.salary) AS total_salary 
+    FROM employee 
+    JOIN role ON employee.role_id = role.id 
+    JOIN department ON role.department_id = department.id 
+    GROUP BY department.id`
+ 
 };
 
 //export the queries
