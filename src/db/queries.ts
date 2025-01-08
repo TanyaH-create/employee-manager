@@ -39,7 +39,14 @@ const queries = {
     FROM employee 
     JOIN role ON employee.role_id = role.id 
     JOIN department ON role.department_id = department.id 
-    GROUP BY department.id`
+    GROUP BY department.id`,
+
+    getEmployeesByDepartment:
+    `SELECT department.name AS department_name, CONCAT(employee.first_name ,' ',employee.last_name) AS employee_name
+    FROM employee
+    JOIN role ON employee.role_id = role.id
+    JOIN department ON role.department_id = department.id
+    ORDER BY department.name, employee_name`,
  
 };
 

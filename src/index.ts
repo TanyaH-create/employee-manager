@@ -17,6 +17,7 @@ async function mainMenu() {
                 'View All Departments',
                 'View All Roles',
                 'View All Employees',
+                'View Employees By Department',
                 'Add Department',
                 'Add Role',
                 'Add Employee',
@@ -37,6 +38,9 @@ async function mainMenu() {
             break;
         case 'View All Employees':
             await viewAllEmployees();
+            break;
+        case 'View Employees By Department':
+            await viewEmployeesByDepartment();
             break;
         case 'Add Department':
             await addDepartment();
@@ -79,6 +83,11 @@ async function viewAllRoles() {
 
 async function viewAllEmployees() {
     const res = await pool.query(queries.getAllEmployees);
+    console.table(res.rows);
+}
+
+async function viewEmployeesByDepartment() {
+    const res = await pool.query(queries.getEmployeesByDepartment);
     console.table(res.rows);
 }
 async function addDepartment() {
