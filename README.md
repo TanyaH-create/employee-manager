@@ -145,6 +145,10 @@ node index.js
 
  ![TotalRaw](https://github.com/user-attachments/assets/ea045d2d-9fca-4201-ae3e-cc4976098d23)
 
+ - Exit will return you to your terminal
+
+![Exit](https://github.com/user-attachments/assets/9c2471d7-75db-4330-b9fa-c673aa35c5ee)
+
 
 ## Database Schema
 
