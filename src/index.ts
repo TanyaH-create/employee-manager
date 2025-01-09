@@ -2,17 +2,25 @@ import inquirer from "inquirer";
 import {pool} from './connection.js';
 import queries from './db/queries.js';
 
-
+let headerDisplayed = false;
 
 // create main menu function - anonymous, will run right away
 async function mainMenu() {
-    //display the  main menu in the terminal
-    // deconstruct action from prompt response (retrieve the user input)
+
+if (!headerDisplayed) {
+  //header
     console.log ('.-----------------------------------------------------------------------------.')
     console.log ('|                                                                             |')
     console.log ('|                E M P L O Y E E     M A N A G E R                            |')
     console.log ('|                                                                             |')
     console.log ("'-----------------------------------------------------------------------------'")
+
+    headerDisplayed = true;
+}
+
+    //display the  main menu in the terminal
+    // deconstruct action from prompt response (retrieve the user input)
+
     const {action} = await inquirer.prompt([
 
         {
