@@ -29,11 +29,24 @@ const queries = {
 
     addEmployee: `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ($1, $2, $3, $4)`,
 
-    //update the role of ann employee
-    updateEmployee: `UPDATE employee SET role_id = $1 WHERE id = $2;`,
+    //delete rows into tables
+    deleteDepartment: `DELETE FROM department WHERE department.id = ($1);`,
+
+    deleteRole: `DELETE FROM role WHERE role.id =  ($1);`,
+
+    deleteEmployee: `DELETE FROM employee WHERE employee.id =  ($1);`,
+
+
+
+    //update the role of an employee
+    updateEmployeeRole: `UPDATE employee SET role_id = $1 WHERE id = $2;`,
+
+    //update the manager of an employee
+    updateEmployeeManager: `UPDATE employee SET manager_id = $2 WHERE id = $1;`,
     
     //Join employee to role to department then group by department and get
     //sum of salary in each department
+    //employee_salary -> role_id -> department_id
     getTotalDeptSalary: 
     `SELECT department.name AS department_name, SUM(role.salary) AS total_salary 
     FROM employee 
@@ -41,12 +54,21 @@ const queries = {
     JOIN department ON role.department_id = department.id 
     GROUP BY department.id`,
 
+    //employee depatment name -> role_id -> department_id -> departmentent_name
     getEmployeesByDepartment:
     `SELECT department.name AS department_name, CONCAT(employee.first_name ,' ',employee.last_name) AS employee_name
     FROM employee
     JOIN role ON employee.role_id = role.id
     JOIN department ON role.department_id = department.id
+    WHERE department.name = $1
     ORDER BY department.name, employee_name`,
+
+    getEmployeesByManager:
+    `SELECT CONCAT(manager.first_name,' ',manager.last_name) AS manager, CONCAT(employee.first_name,' ',employee.last_name) AS employee
+    FROM employee
+    JOIN employee AS manager ON employee.manager_id = manager.id
+    WHERE manager.id = $1`,
+    
  
 };
 
