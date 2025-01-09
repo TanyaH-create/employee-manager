@@ -43,7 +43,7 @@ This application is built with Node.js, PostgreSQL, and the Inquirer package to 
  - Total Salary by Department: Displays a table listing the total salaries of each department.
 
  ## Video Walkthrough
- -  [Video Walkthrough](https://drive.google.com/file/d/1Zi23r9WEy90nrdgbtF9cpGVqGfG7GiGu/view?usp=sharing)   
+ -  [Video Walkthrough](https://drive.google.com/file/d/1A9OF5VKEh8UCRyl7rxp294oydKIAMIjz/view?usp=sharing)   
 
 
 ## Installation
